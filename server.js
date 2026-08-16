@@ -58,8 +58,7 @@ app.post("/api/examiner", async (req, res) => {
       role: turn.role,
       parts: [{ text: turn.text }]
     }));
-
-    if (audioBase64) {
+if (audioBase64) {
       contents.push({
         role: "user",
         parts: [
@@ -67,10 +66,9 @@ app.post("/api/examiner", async (req, res) => {
           { inline_data: { mime_type: audioMimeType || "audio/webm", data: audioBase64 } }
         ]
       });
-    } else {
-      contents.push({ role: "user", parts: [{ text: "Please begin the IELTS Speaking test with Part 1." }] });
     }
-
+    // если аудио нет — это самый первый вызов, и стартовая реплика
+    // уже пришла в history с фронта, дублировать её не нужно
     const response = await fetch(GEMINI_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json", "x-goog-api-key": GEMINI_API_KEY },

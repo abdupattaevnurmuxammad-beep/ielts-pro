@@ -25,7 +25,8 @@ startBtn.addEventListener("click", startTest);
 async function startTest() {
   document.getElementById("intro-view").style.display = "none";
   document.getElementById("test-view").style.display = "block";
-  await requestExaminerTurn(null); // first call, no audio yet
+  history.push({ role: "user", text: "Please begin the IELTS Speaking test with Part 1." });
+  await requestExaminerTurn(null);
 }
 
 // ---- Talk to backend ----
