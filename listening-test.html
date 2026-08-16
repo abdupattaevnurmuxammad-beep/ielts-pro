@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  if (localStorage.getItem("ielts-theme") === "light") {
+    document.documentElement.setAttribute("data-theme", "light");
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=Manrope:wght@400;500;600&display=swap">
+<title>IELTS PRO — Listening Test</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="listening-engine.css">
+</head>
+
+<body>
+<div class="stars"></div>
+<div class="stars2"></div>
+<header>
+<h2>🌌 IELTS PRO</h2>
+<nav>
+<div class="cosmic-nav">
+<button onclick="goHome()">🏠 Home</button>
+<button onclick="goPractice()">📚 Practice</button>
+<button onclick="goDashboard()">
+📊 Dashboard
+</button>
+<button id="theme-toggle" onclick="toggleTheme()">☀️</button>
+</div>
+</nav>
+</header>
+
+<div id="test-view">
+<div class="exam-layout">
+
+<div class="sidebar">
+<h3>Questions</h3>
+<div id="question-grid"></div>
+<div class="legend">
+<span><span class="dot answered"></span> Answered</span>
+<span><span class="dot"></span> Unanswered</span>
+</div>
+<p class="progress-text"><span id="answered-count">0</span> / <span id="total-count">0</span> answered</p>
+</div>
+
+<section class="hero">
+
+<h1 id="section-title">Loading…</h1>
+<p class="context-text" id="section-context"></p>
+
+<div class="audio-player">
+<audio id="audio" controls>
+<source src="" type="audio/mpeg">
+Your browser does not support audio.
+</audio>
+<p class="audio-note">Listen carefully — you can replay the audio as needed.</p>
+</div>
+
+<div class="progress-bar">
+<div id="progress-fill"></div>
+</div>
+
+<div id="questions-container"></div>
+
+<div class="buttons">
+<button id="prevSectionBtn">← Previous Section</button>
+<button id="nextSectionBtn">Next Section →</button>
+</div>
+
+<button class="submit-btn" id="submitBtn">Submit Test</button>
+
+</section>
+
+</div>
+</div>
+
+<div id="results-view" style="display:none;">
+<section class="hero" style="text-align:center;">
+<h1>🎉 Test Complete</h1>
+<h2 class="big-score" id="result-score">0 / 40</h2>
+<p>Estimated Band:</p>
+<h2 class="big-band" id="result-band">—</h2>
+
+<div class="breakdown-list" id="result-breakdown"></div>
+
+<button onclick="retakeTest()">🔄 Retake Test</button>
+</section>
+</div>
+<script type="module" src="firebase-config.js"></script>
+<script type="module" src="save-results.js"></script>
+<script src="listening-data.js"></script>
+<script src="listening-engine.js"></script>
+<script src="script.js"></script>
+<script src="theme.js"></script>
+
+</body>
+</html>

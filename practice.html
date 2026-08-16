@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  if (localStorage.getItem("ielts-theme") === "light") {
+    document.documentElement.setAttribute("data-theme", "light");
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=Manrope:wght@400;500;600&display=swap">
+<title>IELTS Practice</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+<div class="stars"></div>
+<div class="stars2"></div>
+
+<header>
+
+<h2>🌌 IELTS PRO</h2>
+
+<nav>
+
+<div class="nav-links">
+<a href="index.html">Home</a>
+<a href="practice.html">Practice</a>
+<a href="dashboard.html">Dashboard</a>
+</div>
+
+<div class="nav-buttons">
+<button id="theme-toggle" onclick="toggleTheme()">☀️</button>
+</div>
+
+</nav>
+
+</header>
+
+
+<section class="hero">
+
+<h1>Choose Your Practice</h1>
+
+<p>Train every IELTS skill and improve your band score.</p>
+
+
+</section>
+
+
+
+
+<section class="cards">
+
+
+<div class="card">
+
+<h2>🎧 Listening</h2>
+
+<p>Practice IELTS listening sections.</p>
+
+<a href="listening-test.html">
+    <button>Start</button>
+</a>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>📖 Reading</h2>
+
+<p>Improve speed and comprehension.</p>
+
+<button>Start</button>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>✍️ Writing</h2>
+
+<p>Practice Task 1 and Task 2 essays.</p>
+
+<button>Start</button>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>🗣 Speaking</h2>
+
+<p>Practice IELTS speaking questions.</p>
+
+<button>Start</button>
+
+</div>
+
+
+</section>
+
+
+
+<script src="script.js"></script>
+<script src="tilt.js"></script>
+<script src="theme.js"></script>
+</body>
+
+</html>

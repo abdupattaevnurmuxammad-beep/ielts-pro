@@ -1,0 +1,200 @@
+/* ============================================
+   Listening Engine — extra styles
+   (loaded after style.css, only adds new classes,
+   doesn't redefine header/.hero/nav)
+   ============================================ */
+
+.audio-note{
+  color: var(--text-dim);
+  font-size: 0.8rem;
+  margin-top: 8px;
+}
+
+.context-text{
+  color: var(--text-dim);
+  font-size: 0.95rem;
+  margin-bottom: 18px;
+  font-style: italic;
+}
+
+.progress-text{
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  margin-bottom: 24px;
+}
+
+.question-block{
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 16px;
+  transition: border-color 0.2s ease;
+}
+
+.question-block:target,
+.question-block.active{
+  border-color: var(--cyan);
+}
+
+.q-prompt{
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.answer-input{
+  width: 100%;
+  max-width: 320px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  color: var(--text-main);
+  font-size: 0.95rem;
+}
+
+.answer-input:focus{
+  outline: none;
+  border-color: var(--cyan);
+  box-shadow: 0 0 12px rgba(0,220,255,0.35);
+}
+
+.q-answer-area label{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--card-border);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.q-answer-area label:hover{
+  border-color: var(--pink);
+  background: rgba(255,45,170,0.06);
+}
+
+.match-row{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.match-item{
+  color: var(--text-main);
+  font-size: 0.9rem;
+}
+
+.match-row select{
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  color: var(--text-main);
+  padding: 8px 10px;
+  font-size: 0.85rem;
+  min-width: 180px;
+}
+
+.submit-btn{
+  display: block;
+  margin: 30px auto 0;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--cyan), var(--purple));
+  border: none;
+  color: #06030f;
+  padding: 14px 40px;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 0 25px rgba(0,220,255,0.4);
+  transition: all 0.25s ease;
+}
+
+.submit-btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 0 35px rgba(0,220,255,0.6);
+}
+
+.question-box.answered{
+  background: linear-gradient(135deg, var(--purple), var(--cyan));
+  color: #06030f;
+}
+
+.question-box.current-section{
+  border-color: var(--pink);
+}
+
+.legend{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+.legend .dot{
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #201336;
+  border: 1px solid var(--card-border);
+  margin-right: 6px;
+}
+
+.legend .dot.answered{
+  background: linear-gradient(135deg, var(--purple), var(--cyan));
+  border: none;
+}
+
+.big-score, .big-band{
+  font-size: 3rem;
+  background: linear-gradient(100deg, var(--violet-glow), var(--pink), var(--cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 20px;
+}
+
+.breakdown-list{
+  text-align: left;
+  max-width: 600px;
+  margin: 30px auto;
+}
+
+.breakdown-row{
+  display: grid;
+  grid-template-columns: 50px 1fr 30px;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+}
+
+.breakdown-row.correct{
+  background: rgba(40,167,69,0.1);
+  border: 1px solid rgba(40,167,69,0.3);
+}
+
+.breakdown-row.wrong{
+  background: rgba(255,77,109,0.1);
+  border: 1px solid rgba(255,77,109,0.3);
+}
+
+@media (max-width: 860px){
+  .match-row{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .match-row select{
+    width: 100%;
+  }
+}

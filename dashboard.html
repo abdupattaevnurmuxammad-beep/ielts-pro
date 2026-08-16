@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  if (localStorage.getItem("ielts-theme") === "light") {
+    document.documentElement.setAttribute("data-theme", "light");
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=Manrope:wght@400;500;600&display=swap">
+<title>Dashboard — IELTS PRO</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="stars"></div>
+<div class="stars2"></div>
+
+<header>
+<h2>🌌 IELTS PRO</h2>
+<nav>
+<div class="nav-links">
+<a href="index.html">Home</a>
+<a href="practice.html">Practice</a>
+</div>
+<div class="nav-buttons">
+<button id="theme-toggle" onclick="toggleTheme()">☀️</button>
+</div>
+</nav>
+</header>
+
+<section class="hero">
+<h1>Welcome, <span id="user-name">…</span></h1>
+<div id="history-list"><p>Loading your results…</p></div>
+<button onclick="logoutUser()">Logout</button>
+</section>
+
+<script type="module" src="firebase-config.js"></script>
+<script type="module" src="auth.js"></script>
+<script type="module" src="dashboard.js"></script>
+<script src="theme.js"></script>
+
+</body>
+</html>

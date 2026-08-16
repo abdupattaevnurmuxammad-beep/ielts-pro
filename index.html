@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  if (localStorage.getItem("ielts-theme") === "light") {
+    document.documentElement.setAttribute("data-theme", "light");
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=Manrope:wght@400;500;600&display=swap">
+<title>IELTS PRO</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+<div class="stars"></div>
+<div class="stars2"></div>
+
+<header>
+
+
+<div class="logo">
+    🌌 IELTS PRO
+</div>
+
+<nav>
+
+<div class="nav-links">
+
+<a href="index.html">Home</a>
+<a href="practice.html">Practice</a>
+<a href="dashboard.html">Dashboard</a>
+
+</div>
+
+<div id="streak-display"></div>
+<div class="nav-buttons">
+<button id="theme-toggle" onclick="toggleTheme()">☀️</button>
+<a href="login.html"><button class="login-btn">Login</button></a>
+<a href="register.html"><button class="register-btn">Register</button></a>
+
+</div>
+
+</nav>
+
+</header>
+
+
+
+<section class="hero">
+
+    <div class="planet-saturn">
+  <div class="ring-back"></div>
+  <div class="sphere"></div>
+  <div class="ring-front"></div>
+</div>
+<div class="planet-moon"></div>
+<div class="moon-orbit"></div>
+    <span class="hero-badge">
+        🚀 Trusted by IELTS Students Worldwide
+    </span>
+
+    <h1>
+        Master IELTS.<br>
+        Unlock Your Future.
+    </h1>
+
+    <p>
+        Practice Listening, Reading, Writing and Speaking
+        with realistic Cambridge-style tests, AI feedback,
+        and detailed progress tracking.
+    </p>
+    <div class="hero-buttons">
+
+        <a href="practice.html">
+            <button class="primary-btn">
+                Start Practice →
+            </button>
+        </a>
+
+        <button class="secondary-btn">
+            Explore Features
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<section class="cards">
+
+
+<div class="card">
+
+<h2>🎧 Listening</h2>
+
+<p>
+Improve your listening skills with IELTS tests.
+</p>
+
+<a href="listening-test.html">
+Open Listening
+</a>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>📖 Reading</h2>
+
+<p>
+Practice IELTS reading passages.
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>✍️ Writing</h2>
+
+<p>
+Learn Band 7+ writing skills.
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>🗣 Speaking</h2>
+
+<p>
+Practice IELTS speaking questions.
+</p>
+
+</div>
+
+
+</section>
+<section class="stats">
+
+    <div class="stat-card">
+        <h2 class="counter" data-target="15000">0</h2>
+        <p>Students Worldwide</p>
+    </div>
+
+    <div class="stat-card">
+        <h2 class="counter" data-target="500">0</h2>
+        <p>Practice Tests</p>
+    </div>
+
+    <div class="stat-card">
+        <h2 class="counter" data-target="95">0</h2>
+        <p>Success Rate (%)</p>
+    </div>
+
+    <div class="stat-card">
+        <h2 class="counter" data-target="24">0</h2>
+        <p>AI Feedback</p>
+    </div>
+
+</section>
+<script type="module" src="firebase-config.js"></script>
+<script type="module" src="streak.js"></script>
+<script src="script.js"></script>
+<script src="tilt.js"></script>
+<script src="theme.js"></script>
+
+</body>
+</html>
