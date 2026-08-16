@@ -1,0 +1,106 @@
+/* ============================================
+   Speaking Engine — styles
+   ============================================ */
+
+.speaking-shell{
+  max-width: 640px;
+}
+
+.part-badge{
+  display: inline-block;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--cyan);
+  padding: 6px 18px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px rgba(0,220,255,0.5);
+}
+
+.examiner-box{
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 28px;
+  margin-bottom: 24px;
+  backdrop-filter: blur(10px);
+  min-height: 100px;
+  text-align: left;
+}
+
+.examiner-box p{
+  color: var(--text-main);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.prep-timer{
+  color: var(--pink);
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  text-shadow: 0 0 12px rgba(255,45,170,0.5);
+}
+
+.mic-controls{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.mic-btn{
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: #06030f;
+  background: linear-gradient(135deg, var(--pink), var(--purple) 50%, var(--cyan));
+  border: none;
+  padding: 22px 46px;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 0 25px rgba(255,45,170,0.5), 0 0 50px rgba(168,40,255,0.3);
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+  user-select: none;
+}
+
+.mic-btn:active,
+.mic-btn.recording{
+  transform: scale(0.96);
+  box-shadow: 0 0 45px rgba(255,45,170,0.8), 0 0 80px rgba(0,220,255,0.5);
+}
+
+.mic-btn:disabled{
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.rec-status{
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  min-height: 20px;
+}
+
+.feedback-content{
+  text-align: left;
+  max-width: 560px;
+  margin: 24px auto 30px;
+}
+
+.feedback-row{
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin-bottom: 10px;
+  color: var(--text-main);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.feedback-row strong{
+  color: var(--cyan);
+}

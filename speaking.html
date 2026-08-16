@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  if (localStorage.getItem("ielts-theme") === "light") {
+    document.documentElement.setAttribute("data-theme", "light");
+  }
+</script>
+<title>IELTS PRO — Speaking</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="speaking-engine.css">
+</head>
+
+<body>
+<div class="stars"></div>
+<div class="stars2"></div>
+
+<header>
+  <div class="logo">🌌 IELTS PRO</div>
+  <nav>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="practice.html">Practice</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero speaking-shell">
+
+  <div id="intro-view">
+    <h1>🗣 Speaking Test</h1>
+    <p>A 3-part IELTS Speaking simulation. The examiner listens to your actual voice and gives feedback at the end — find a quiet spot and allow microphone access.</p>
+    <button id="startBtn" class="primary-btn">Start Test</button>
+  </div>
+
+  <div id="test-view" style="display:none;">
+    <span class="part-badge" id="part-badge">Part 1</span>
+    <div class="examiner-box">
+      <p id="examiner-text">…</p>
+    </div>
+
+    <div id="prep-timer" class="prep-timer" style="display:none;">
+      Prepare: <span id="prep-seconds">60</span>s
+    </div>
+
+    <div class="mic-controls">
+      <button id="recordBtn" class="mic-btn">🎙️ Hold to Answer</button>
+      <span id="rec-status" class="rec-status"></span>
+    </div>
+  </div>
+
+  <div id="results-view" style="display:none;">
+    <h2>Your Feedback</h2>
+    <div id="feedback-content" class="feedback-content"></div>
+    <button class="primary-btn" onclick="location.reload()">Take Test Again</button>
+  </div>
+
+</section>
+
+<script src="speaking-engine.js"></script>
+
+</body>
+</html>
