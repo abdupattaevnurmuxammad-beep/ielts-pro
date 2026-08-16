@@ -71,15 +71,36 @@ async function requestExaminerTurn(audioBase64, audioMimeType) {
 }
 
 // ---- Text-to-speech for the examiner ----
+let cachedVoices = [];
+
+function loadVoices() {
+  cachedVoices = speechSynthesis.getVoices();
+}
+loadVoices();
+if (speechSynthesis.onvoiceschanged !== undefined) {
+  speechSynthesis.onvoiceschanged = loadVoices;
+}
+
+function pickEnglishVoice() {
+  return (
+    cachedVoices.find(v => v.lang === "en-US" && /Google|Natural|Online/i.test(v.name)) ||
+    cachedVoices.find(v => v.lang === "en-GB") ||
+    cachedVoices.find(v => v.lang === "en-US") ||
+    cachedVoices.find(v => v.lang && v.lang.startsWith("en"))
+  );
+}
+
 function speak(text) {
   if (!("speechSynthesis" in window)) return;
   const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = "en-US";
+  const voice = pickEnglishVoice();
+  if (voice) utter.voice = voice;
   utter.rate = 0.98;
   utter.pitch = 1;
   speechSynthesis.cancel();
   speechSynthesis.speak(utter);
 }
-
 // ---- Part / prep-timer heuristics based on examiner's own wording ----
 function updatePartBadge(text) {
   const lower = text.toLowerCase();
