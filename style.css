@@ -64,7 +64,6 @@ body{
     radial-gradient(3.5px 3.5px at 60% 30%, #fff 0%, #fff 45%, transparent 75%);
   background-size: 600px 600px;
   animation: drift1 60s linear infinite, twinkle 3s ease-in-out infinite alternate;
-  filter: drop-shadow(0 0 3px rgba(255,255,255,0.8));
 }
 
 .stars2{
@@ -76,7 +75,6 @@ body{
     radial-gradient(3px 3px at 95% 30%, #fff 0%, #fff 45%, transparent 75%);
   background-size: 500px 500px;
   animation: drift2 90s linear infinite reverse, twinkle 4s ease-in-out infinite alternate-reverse;
-  filter: drop-shadow(0 0 3px rgba(255,255,255,0.7));
 }
 
 @keyframes drift1{ from{ background-position: 0 0; } to{ background-position: -600px 300px; } }
@@ -111,7 +109,7 @@ header{
   top: 0;
   z-index: 50;
   background: rgba(6, 3, 15, 0.65);
-  backdrop-filter: blur(14px);
+  backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--card-border);
 }header h2{
   font-size: 1.4rem;
@@ -253,7 +251,7 @@ nav a:hover::after{
   border: 1px solid var(--card-border);
   border-radius: var(--radius);
   padding: 32px 26px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(8px);
   position: relative;
   overflow: hidden;
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
@@ -341,7 +339,7 @@ nav a:hover::after{
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: var(--radius);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(8px);
 }
 
 .exam-layout .hero h1{
@@ -358,7 +356,7 @@ nav a:hover::after{
   border: 1px solid var(--card-border);
   border-radius: var(--radius);
   padding: 22px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(8px);
   position: sticky;
   top: 100px;
 }
@@ -538,7 +536,7 @@ nav a:hover::after{
   border: 1px solid var(--card-border);
   border-radius: var(--radius);
   padding: 34px;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(8px);
 }
 
 .test-box label{
@@ -670,8 +668,8 @@ input:focus-visible{
   padding: 8px 18px;
   border-radius: 999px;
   background: linear-gradient(135deg, rgba(255,255,255,0.09), rgba(255,255,255,0.02));
-  backdrop-filter: blur(18px) saturate(180%);
-  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  backdrop-filter: blur(8px) saturate(140%);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
   border: 1px solid rgba(255,255,255,0.14);
   box-shadow: 0 8px 20px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.18);
 }
@@ -704,8 +702,8 @@ input:focus-visible{
 .streak-badge,
 .stat-card{
   background: var(--card-bg);
-  backdrop-filter: blur(12px) saturate(160%);   /* было 22px */
-  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  backdrop-filter: blur(8px) saturate(140%);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
   border: 1px solid var(--card-border);
   box-shadow:
     0 20px 50px rgba(0,0,0,0.45),
@@ -715,13 +713,9 @@ input:focus-visible{
 
 header{
   background: linear-gradient(135deg, rgba(6,3,15,0.75), rgba(6,3,15,0.55));
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  backdrop-filter: blur(8px) saturate(140%);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
   box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 -1px 0 rgba(255,255,255,0.08);
-}
-
-.card{
-  will-change: transform;
 }
 
 .card::after{
@@ -786,8 +780,8 @@ header{
 }
 
 @keyframes pulse-glow{
-  0%, 100%{ filter: drop-shadow(0 0 10px var(--pink)); transform: scale(1); }
-  50%{ filter: drop-shadow(0 0 22px var(--cyan)); transform: scale(1.12); }
+  0%, 100%{ transform: scale(1); opacity: 0.9; }
+  50%{ transform: scale(1.1); opacity: 1; }
 }
 
 .streak-card:hover .streak-count{
