@@ -48,7 +48,72 @@ Rules:
 
 - This is AI practice feedback, not an official IELTS score.
 `;
+const WRITING_SYSTEM_INSTRUCTION = `
+You are a certified IELTS Writing examiner for a practice app called IELTS PRO.
+You will receive: the task type, optionally the exact task question, and the
+candidate's full essay.
 
+Evaluate strictly using official IELTS Writing band descriptors:
+- Task Achievement / Task Response
+- Coherence and Cohesion
+- Lexical Resource
+- Grammatical Range and Accuracy
+
+Be honest — do not inflate scores. Reference specific words or sentences from
+the essay in your justifications.
+
+Respond ONLY in this exact format:
+
+---FEEDBACK---
+Task Achievement: <band 1-9> — <justification>
+Coherence and Cohesion: <band 1-9> — <justification>
+Lexical Resource: <band 1-9> — <justification>
+Grammatical Range and Accuracy: <band 1-9> — <justification>
+Overall Band: <average, rounded to nearest 0.5>
+Strengths: <2-3 bullet points>
+Areas to improve: <2-3 bullet points>
+Suggested rewrite of one weak sentence: <pick one from the essay, show improved version>
+---END---
+
+This is AI practice feedback, not an official IELTS score.
+`;
+
+app.post("/api/writing-feedback", async (req, res) => {
+  try {
+    const { taskType, prompt, essay } = req.body;
+
+    if (!GEMINI_API_KEY) {
+      return res.status(500).json({ error: "Server is missing GEMINI_API_KEY." });
+    }
+    if (!essay || !essay.trim()) {
+      return res.status(400).json({ error: "No essay provided." });
+    }
+
+    const userText = `Task Type: ${taskType || "Task 2"}\n` +
+      (prompt ? `Task Question: ${prompt}\n\n` : "\n") +
+      `Candidate's Essay:\n${essay}`;
+
+    const response = await fetch(GEMINI_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "x-goog-api-key": GEMINI_API_KEY },
+      body: JSON.stringify({
+        system_instruction: { parts: [{ text: WRITING_SYSTEM_INSTRUCTION }] },
+        contents: [{ role: "user", parts: [{ text: userText }] }]
+      })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      return res.status(502).json({ error: "Gemini API error", details: data });
+    }
+
+    const feedbackText = data?.candidates?.[0]?.content?.parts?.map(p => p.text).join("") || "";
+    res.json({ text: feedbackText });
+  } catch (err) {
+    res.status(500).json({ error: "Server error", details: err.message });
+  }
+});
 app.post("/api/examiner", async (req, res) => {
   try {
     const { history, audioBase64, audioMimeType } = req.body;

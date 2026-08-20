@@ -1,0 +1,141 @@
+/* ============================================
+   Writing Engine — styles
+   ============================================ */
+
+.writing-shell{
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.writing-shell h1{
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.writing-shell > p{
+  text-align: center;
+  color: var(--text-dim);
+  margin-bottom: 30px;
+}
+
+.form-group{
+  margin-bottom: 22px;
+}
+
+.form-group label{
+  display: block;
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+#task-type{
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--text-main);
+  font-family: 'Manrope', sans-serif;
+  font-size: 1rem;
+}
+
+#prompt-input,
+#essay-input{
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--text-main);
+  font-family: 'Manrope', sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  resize: vertical;
+  backdrop-filter: blur(10px);
+}
+
+#prompt-input{
+  min-height: 70px;
+}
+
+#essay-input{
+  min-height: 280px;
+}
+
+#word-count{
+  display: block;
+  text-align: right;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  margin-top: 6px;
+}
+
+.primary-btn{
+  display: block;
+  margin: 0 auto;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  color: #06030f;
+  background: linear-gradient(135deg, var(--pink), var(--purple) 50%, var(--cyan));
+  border: none;
+  font-size: 1rem;
+  padding: 16px 40px;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 0 25px rgba(255,45,170,0.55), 0 0 50px rgba(168,40,255,0.3);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.primary-btn:hover{
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 0 35px rgba(0,220,255,0.65), 0 0 60px rgba(168,40,255,0.45);
+}
+
+.loader{
+  width: 46px;
+  height: 46px;
+  margin: 60px auto 20px;
+  border-radius: 50%;
+  border: 3px solid var(--card-border);
+  border-top-color: var(--pink);
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin{
+  to{ transform: rotate(360deg); }
+}
+
+#loading-view p{
+  text-align: center;
+  color: var(--text-dim);
+}
+
+#results-view h2{
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.feedback-content{
+  text-align: left;
+  max-width: 640px;
+  margin: 0 auto 30px;
+}
+
+.feedback-row{
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin-bottom: 10px;
+  color: var(--text-main);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.feedback-row strong{
+  color: var(--cyan);
+}

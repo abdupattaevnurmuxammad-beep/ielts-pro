@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  if (localStorage.getItem("ielts-theme") === "light") {
+    document.documentElement.setAttribute("data-theme", "light");
+  }
+</script>
+<title>IELTS PRO — Writing</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="writing-engine.css">
+</head>
+
+<body>
+<div class="stars"></div>
+<div class="stars2"></div>
+
+<header>
+  <div class="logo">🌌 IELTS PRO</div>
+  <nav>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="practice.html">Practice</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero writing-shell">
+
+  <div id="input-view">
+    <h1>✍️ Writing Test</h1>
+    <p>Paste your task question and essay. The examiner will score it and give detailed feedback.</p>
+
+    <div class="form-group">
+      <label for="task-type">Task Type</label>
+      <select id="task-type">
+        <option value="Task 1 (Academic)">Task 1 — Academic (Report)</option>
+        <option value="Task 1 (General)">Task 1 — General (Letter)</option>
+        <option value="Task 2" selected>Task 2 — Essay</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="prompt-input">Task Question (optional but recommended)</label>
+      <textarea id="prompt-input" placeholder="Paste the exact IELTS question here..."></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="essay-input">Your Essay</label>
+      <textarea id="essay-input" placeholder="Write or paste your essay here..."></textarea>
+      <span id="word-count">0 words</span>
+    </div>
+
+    <button id="submitBtn" class="primary-btn">Get Feedback</button>
+  </div>
+
+  <div id="loading-view" style="display:none;">
+    <div class="loader"></div>
+    <p>Examiner is reading your essay…</p>
+  </div>
+
+  <div id="results-view" style="display:none;">
+    <h2>Your Feedback</h2>
+    <div id="feedback-content" class="feedback-content"></div>
+    <button class="primary-btn" onclick="location.reload()">Check Another Essay</button>
+  </div>
+
+</section>
+
+<script src="writing-engine.js"></script>
+
+</body>
+</html>
