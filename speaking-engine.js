@@ -35,7 +35,7 @@ async function requestExaminerTurn(audioBase64, audioMimeType) {
   recordBtn.disabled = true;
 
   try {
-    const res = await fetch("/api/examiner", {
+    const res = await fetch("https://ielts-pro-r0me.onrender.com/api/examiner", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ history, audioBase64, audioMimeType })
@@ -137,11 +137,19 @@ function runPrepTimer(seconds) {
 }
 
 // ---- Recording the candidate's real voice ----
-recordBtn.addEventListener("mousedown", startRecording);
-recordBtn.addEventListener("touchstart", startRecording);
-recordBtn.addEventListener("mouseup", stopRecording);
-recordBtn.addEventListener("touchend", stopRecording);
+let isRecording = false;
 
+recordBtn.addEventListener("click", () => {
+  if (!isRecording) {
+    startRecording();
+    isRecording = true;
+    recordBtn.textContent = "⏹️ Click to Stop";
+  } else {
+    stopRecording();
+    isRecording = false;
+    recordBtn.textContent = "🎙️ Click to Answer";
+  }
+});
 async function startRecording() {
   try {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });

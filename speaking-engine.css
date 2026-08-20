@@ -103,4 +103,11 @@
 
 .feedback-row strong{
   color: var(--cyan);
+}.speaking-shell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  text-align: center;
 }
