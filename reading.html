@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  if (localStorage.getItem("ielts-theme") === "light") {
+    document.documentElement.setAttribute("data-theme", "light");
+  }
+</script>
+<title>IELTS NOVA — Reading</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="reading-engine.css">
+</head>
+
+<body>
+<div class="stars"></div>
+<div class="stars2"></div>
+
+<header>
+  <div class="logo">🌌 IELTS NOVA</div>
+  <nav>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="practice.html">Practice</a>
+    </div>
+  </nav>
+</header>
+
+<div class="exam-layout">
+
+  <div class="sidebar">
+    <h3>Questions</h3>
+    <div id="question-grid"></div>
+    <div class="test-info" style="margin-top:20px;">
+      <div id="timer">20:00</div>
+    </div>
+    <button id="submitBtn" style="margin-top:16px; width:100%;">Submit Test</button>
+  </div>
+
+  <div class="hero">
+    <h1 id="passage-title">Reading Passage</h1>
+    <div class="progress-bar"><div id="progress-fill"></div></div>
+
+    <div class="reading-columns">
+      <div class="passage-box" id="passage-box"></div>
+      <div class="questions-box" id="questions-box"></div>
+    </div>
+  </div>
+
+</div>
+
+<div id="results-view" class="test-box" style="display:none; max-width:800px;">
+  <h2>Your Results</h2>
+  <div id="feedback-content" class="feedback-content"></div>
+  <button class="primary-btn" onclick="location.reload()">Try Another Passage</button>
+</div>
+
+<script src="reading-engine.js"></script>
+
+</body>
+</html>

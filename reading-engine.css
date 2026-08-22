@@ -1,0 +1,134 @@
+/* ============================================
+   Reading Engine — styles
+   ============================================ */
+
+.reading-columns{
+  display: flex;
+  gap: 26px;
+  align-items: flex-start;
+}
+
+.passage-box{
+  flex: 1;
+  max-height: 70vh;
+  overflow-y: auto;
+  padding-right: 16px;
+  line-height: 1.8;
+  font-size: 1rem;
+  color: var(--text-main);
+}
+
+.passage-box p{
+  margin-bottom: 16px;
+}
+
+.questions-box{
+  flex: 1;
+  max-height: 70vh;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.q-block{
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.q-text{
+  font-weight: 600;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.q-block label{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 4px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.q-block input[type="radio"]{
+  accent-color: var(--pink);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.fill-input{
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--text-main);
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.95rem;
+}
+
+mark.user-highlight{
+  background: rgba(255, 220, 60, 0.55);
+  color: inherit;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 0 1px;
+}
+
+#highlight-toolbar{
+  position: absolute;
+  z-index: 999;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #06030f;
+  background: linear-gradient(135deg, var(--pink), var(--purple));
+  border: none;
+  padding: 8px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(255,45,170,0.5);
+}
+
+.question-box.answered{
+  background: linear-gradient(135deg, var(--pink), var(--purple));
+  color: #fff;
+}
+
+.feedback-content{
+  text-align: left;
+  margin: 20px auto 30px;
+}
+
+.feedback-row{
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin-bottom: 10px;
+  color: var(--text-main);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.feedback-row.correct{
+  border-color: var(--success);
+}
+
+.feedback-row.incorrect{
+  border-color: var(--danger);
+}
+
+.feedback-row strong{
+  color: var(--cyan);
+}
+
+@media (max-width: 860px){
+  .reading-columns{
+    flex-direction: column;
+  }
+  .passage-box, .questions-box{
+    max-height: none;
+  }
+}
