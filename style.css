@@ -1120,20 +1120,24 @@ html:not([data-theme="light"]) .moon-orbit::before{
   letter-spacing: 0.05em;
   margin-bottom: 8px;
 }
-
 .progress-cards{
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
   gap: 16px;
-  max-width: 900px;
+  max-width: 480px;
   margin: 24px auto;
 }
 
 .progress-card{
-  flex: 1 1 160px;
-  min-width: 160px;
+  width: 100%;
+  box-sizing: border-box;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  backdrop-filter: blur(8px) saturate(140%);
+  -webkit-backdrop-filter: blur(8px) saturate(140%);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.15);
 }
 
 .advice-box{
