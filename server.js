@@ -19,7 +19,7 @@ const MODEL = "gemini-3.6-flash";
 const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`;
 
 const SYSTEM_INSTRUCTION = `
-You are acting as a certified IELTS Speaking examiner for a practice app called IELTS PRO.
+You are acting as a certified IELTS Speaking examiner for a practice app called IELTS NOVA.
 You conduct a realistic 3-part IELTS Speaking test:
 
 - Part 1 (Introduction & Interview, ~4-5 minutes): ask short personal questions
@@ -54,8 +54,9 @@ Rules:
 
 - This is AI practice feedback, not an official IELTS score.
 `;
+
 const WRITING_SYSTEM_INSTRUCTION = `
-You are a certified IELTS Writing examiner for a practice app called IELTS PRO.
+You are a certified IELTS Writing examiner for a practice app called IELTS NOVA.
 You will receive: the task type, optionally the exact task question, and the
 candidate's full essay.
 
@@ -82,6 +83,20 @@ Suggested rewrite of one weak sentence: <pick one from the essay, show improved 
 ---END---
 
 This is AI practice feedback, not an official IELTS score.
+`;
+
+const ADVICE_SYSTEM_INSTRUCTION = `
+You are a friendly IELTS coach for an app called IELTS NOVA. You will receive a
+JSON array of a student's recent practice test results, each with testType
+(Listening/Reading/Writing/Speaking), score, total, band, and an optional
+breakdown of sub-scores or question-type accuracy.
+
+Write ONE short paragraph (3-4 sentences max) of specific, encouraging advice
+on what the student should focus on next. Reference actual numbers from their
+data. If one skill or sub-area is clearly weaker, name it and suggest a
+concrete next step. If data is limited, still give useful general encouragement.
+
+Do not use markdown formatting, headers, or bullet points — plain sentences only.
 `;
 
 app.post("/api/writing-feedback", async (req, res) => {
@@ -120,6 +135,7 @@ app.post("/api/writing-feedback", async (req, res) => {
     res.status(500).json({ error: "Server error", details: err.message });
   }
 });
+
 app.post("/api/examiner", async (req, res) => {
   try {
     const { history, audioBase64, audioMimeType } = req.body;
@@ -132,7 +148,7 @@ app.post("/api/examiner", async (req, res) => {
       role: turn.role,
       parts: [{ text: turn.text }]
     }));
-if (audioBase64) {
+    if (audioBase64) {
       contents.push({
         role: "user",
         parts: [
@@ -141,8 +157,6 @@ if (audioBase64) {
         ]
       });
     }
-    // если аудио нет — это самый первый вызов, и стартовая реплика
-    // уже пришла в history с фронта, дублировать её не нужно
     const response = await fetch(GEMINI_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json", "x-goog-api-key": GEMINI_API_KEY },
@@ -162,7 +176,42 @@ if (audioBase64) {
   }
 });
 
+app.post("/api/progress-advice", async (req, res) => {
+  try {
+    const { results } = req.body;
+
+    if (!GEMINI_API_KEY) {
+      return res.status(500).json({ error: "Server is missing GEMINI_API_KEY." });
+    }
+    if (!results || !results.length) {
+      return res.json({ text: "Complete a few practice tests and I'll give you personalized advice here." });
+    }
+
+    const userText = `Student's recent results:\n${JSON.stringify(results, null, 2)}`;
+
+    const response = await fetch(GEMINI_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "x-goog-api-key": GEMINI_API_KEY },
+      body: JSON.stringify({
+        system_instruction: { parts: [{ text: ADVICE_SYSTEM_INSTRUCTION }] },
+        contents: [{ role: "user", parts: [{ text: userText }] }]
+      })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      return res.status(502).json({ error: "Gemini API error", details: data });
+    }
+
+    const adviceText = data?.candidates?.[0]?.content?.parts?.map(p => p.text).join("") || "";
+    res.json({ text: adviceText });
+  } catch (err) {
+    res.status(500).json({ error: "Server error", details: err.message });
+  }
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`IELTS PRO server running on port ${PORT}`);
+  console.log(`IELTS NOVA server running on port ${PORT}`);
 });
