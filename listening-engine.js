@@ -17,11 +17,12 @@ const BAND_TABLE = [
   { min: 18, band: 5.5 },
   { min: 16, band: 5 },
   { min: 13, band: 4.5 },
-  { min: 11, band: 4 },
+  { min: 10, band: 4 },
   { min: 8,  band: 3.5 },
   { min: 6,  band: 3 },
   { min: 4,  band: 2.5 },
-  { min: 0,  band: 2 }
+  { min: 2,  band: 2 },
+  { min: 0,  band: 1 }
 ];
 
 function scoreToBand(raw) {
