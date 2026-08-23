@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,7 +28,6 @@
 </header>
 
 <section class="hero speaking-shell">
-
   <div id="intro-view">
     <h1>🗣 Speaking Test</h1>
     <p>A 3-part IELTS Speaking simulation. The examiner listens to your actual voice and gives feedback at the end — find a quiet spot and allow microphone access.</p>
@@ -41,11 +39,9 @@
     <div class="examiner-box">
       <p id="examiner-text">…</p>
     </div>
-
     <div id="prep-timer" class="prep-timer" style="display:none;">
       Prepare: <span id="prep-seconds">60</span>s
     </div>
-
     <div class="mic-controls">
       <button id="recordBtn" class="mic-btn">🎙️ Hold to Answer</button>
       <span id="rec-status" class="rec-status"></span>
@@ -57,10 +53,8 @@
     <div id="feedback-content" class="feedback-content"></div>
     <button class="primary-btn" onclick="location.reload()">Take Test Again</button>
   </div>
-
 </section>
 
-<script src="speaking-engine.js"></script>
-
+<script type="module" src="speaking-engine.js"></script>
 </body>
 </html>

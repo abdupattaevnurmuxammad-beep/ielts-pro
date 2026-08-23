@@ -1,11 +1,12 @@
 // ============================================
-// IELTS PRO — Speaking Engine (client side)
+// IELTS NOVA — Speaking Engine (client side)
 // Talks ONLY to your own backend (/api/examiner),
 // never directly to Gemini — the API key stays
 // on the server.
 // ============================================
+import { saveResult, parseBandCriteria } from "./save-result.js";
 
-let history = [];        // { role: "user"|"model", text: "..." }
+let history = [];
 let mediaRecorder = null;
 let audioChunks = [];
 let currentPart = 1;
@@ -35,7 +36,7 @@ async function requestExaminerTurn(audioBase64, audioMimeType) {
   recordBtn.disabled = true;
 
   try {
-    const res = await fetch("https://ielts-pro-r0me.onrender.com/api/examiner", {
+    const res = await fetch("/api/examiner", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ history, audioBase64, audioMimeType })
@@ -102,6 +103,7 @@ function speak(text) {
   speechSynthesis.cancel();
   speechSynthesis.speak(utter);
 }
+
 // ---- Part / prep-timer heuristics based on examiner's own wording ----
 function updatePartBadge(text) {
   const lower = text.toLowerCase();
@@ -136,20 +138,17 @@ function runPrepTimer(seconds) {
   }, 1000);
 }
 
-// ---- Recording the candidate's real voice ----
+// ---- Click to start/stop recording ----
 let isRecording = false;
 
 recordBtn.addEventListener("click", () => {
   if (!isRecording) {
     startRecording();
-    isRecording = true;
-    recordBtn.textContent = "⏹️ Click to Stop";
   } else {
     stopRecording();
-    isRecording = false;
-    recordBtn.textContent = "🎙️ Click to Answer";
   }
 });
+
 async function startRecording() {
   try {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -157,8 +156,10 @@ async function startRecording() {
     mediaRecorder = new MediaRecorder(stream);
     mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
     mediaRecorder.start();
+    isRecording = true;
     recordBtn.classList.add("recording");
-    setStatus("🔴 Recording… release to send");
+    recordBtn.textContent = "⏹️ Click to Stop";
+    setStatus("🔴 Recording… click again to send");
   } catch (err) {
     setStatus("⚠️ Microphone access denied.");
   }
@@ -167,7 +168,9 @@ async function startRecording() {
 function stopRecording() {
   if (!mediaRecorder || mediaRecorder.state !== "recording") return;
   mediaRecorder.stop();
+  isRecording = false;
   recordBtn.classList.remove("recording");
+  recordBtn.textContent = "🎙️ Click to Answer";
 
   mediaRecorder.onstop = async () => {
     const blob = new Blob(audioChunks, { type: "audio/webm" });
@@ -213,4 +216,9 @@ function showFeedback(raw) {
   });
 
   document.getElementById("feedback-content").innerHTML = html;
+
+  const criteria = parseBandCriteria(raw);
+  const overallBand = criteria["Overall Band"];
+  delete criteria["Overall Band"];
+  saveResult({ testType: "Speaking", score: overallBand, total: 9, band: overallBand, breakdown: criteria });
 }

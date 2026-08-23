@@ -1110,4 +1110,49 @@ html:not([data-theme="light"]) .moon-orbit::before{
   .moon-orbit{
     animation: none !important;
   }
+}.progress-cards{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  max-width: 700px;
+  margin: 24px auto;
+}
+
+.progress-card{
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 20px;
+  text-align: center;
+}
+
+.progress-skill{
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.progress-band{
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  background: linear-gradient(100deg, var(--violet-glow), var(--pink), var(--cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.advice-box{
+  max-width: 600px;
+  margin: 20px auto 0;
+  padding: 20px 26px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  color: var(--text-main);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  text-align: left;
 }

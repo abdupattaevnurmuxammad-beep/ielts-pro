@@ -4,6 +4,7 @@
 // below with your own Cambridge-sourced content later —
 // same structure, just swap the text/answers.
 // ============================================
+import { saveResult } from "./save-result.js";
 
 const READING_TEST = {
   title: "Passage 1: The History of Public Libraries",
@@ -261,6 +262,16 @@ function submitTest() {
   const total = READING_TEST.questions.length;
   const percentage = (correctCount / total) * 100;
   const band = getBand(percentage);
+
+  // accuracy per question type (mc / tfng / fill) — useful for "what to work on" advice
+  const breakdown = {};
+  results.forEach(r => {
+    if (!breakdown[r.type]) breakdown[r.type] = { correct: 0, total: 0 };
+    breakdown[r.type].total++;
+    if (r.isCorrect) breakdown[r.type].correct++;
+  });
+
+  saveResult({ testType: "Reading", score: correctCount, total, band, breakdown });
 
   showResults(correctCount, total, band, results);
 }

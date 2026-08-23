@@ -1,7 +1,8 @@
 // ============================================
-// IELTS PRO — Writing Engine (client side)
+// IELTS NOVA — Writing Engine (client side)
 // Talks ONLY to your own backend (/api/writing-feedback)
 // ============================================
+import { saveResult, parseBandCriteria } from "./save-result.js";
 
 const taskType = document.getElementById("task-type");
 const promptInput = document.getElementById("prompt-input");
@@ -73,4 +74,9 @@ function showFeedback(raw) {
   });
 
   document.getElementById("feedback-content").innerHTML = html;
+
+  const criteria = parseBandCriteria(raw);
+  const overallBand = criteria["Overall Band"];
+  delete criteria["Overall Band"];
+  saveResult({ testType: "Writing", score: overallBand, total: 9, band: overallBand, breakdown: criteria });
 }
